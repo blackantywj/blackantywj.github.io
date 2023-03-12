@@ -9,3 +9,8 @@ redirect_from:
 ---
 
 I'm a jobless, algorithmic idiot, bug developer (good at producing bugs), and I'm an IKUN. I graduated from Hohai University, Nanjing.
+---
+Recent trends
+---
+
+I don't even know...
