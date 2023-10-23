@@ -12,4 +12,4 @@ paperurl: 'https://www.mdpi.com/1481392'
 
 [Download paper here](http://academicpages.github.io/files/paper2.pdf)
 
-Recommended citation: Your Name, You. (2010). "Paper Title Number 2." <i>Journal 1</i>. 1(2).
+Recommended citation: Liu F, Li Z, Yang W, et al. Age-invariant adversarial feature learning for kinship verification[J]. Mathematics, 2022, 10(3): 480.
