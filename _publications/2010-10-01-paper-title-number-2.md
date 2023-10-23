@@ -7,7 +7,7 @@ date: 2022-2-23
 venue: 'February 23'
 # venue: 'Journal 1'
 paperurl: 'https://www.mdpi.com/1481392'
-# citation: 'Liu F, Li Z, Yang W, et al. Age-invariant adversarial feature learning for kinship verification[J]. Mathematics, 2022, 10(3): 480.'
+citation: 'Liu F, Li Z, Yang W, et al. Age-invariant adversarial feature learning for kinship verification[J]. Mathematics, 2022, 10(3): 480.'
 ---
 Age-invariant adversarial feature learning for kinship verification
 
