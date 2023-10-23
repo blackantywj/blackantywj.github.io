@@ -5,11 +5,11 @@ collection: publications
 # excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
 date: 2021-5-19
 # venue: 'Journal 1'
-paperurl: 'https://arxiv.org/ftp/arxiv/papers/2004/2004.02806.pdf'
+paperurl: 'https://https://ieeexplore.ieee.org/document/9451544'
 citation: 'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
 ---
 This paper is about the number 1. The number 2 is left for future work.
 
-[Download paper here](http://academicpages.github.io/files/paper1.pdf)
+[Download paper here](https://https://ieeexplore.ieee.org/document/9451544)
 
 Recommended citation: Your Name, You. (2009). "Paper Title Number 1." <i>Journal 1</i>. 1(1).
