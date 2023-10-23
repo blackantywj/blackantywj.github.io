@@ -11,8 +11,8 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, Hoihai University, 2017-2021
-* M.S. in Jekyll, china University of mining and technology, 2023-
+* B.S. in Nanjing, Hoihai University, 2017-2021
+* M.S. in Xuzhou, china University of mining and technology, 2023-Now
 Work experience
 ======
 None
