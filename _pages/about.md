@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "ABOUT ME"
+title: "Vicent's Home"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-I'm a jobless, algorithmic idiot, bug developer (good at producing bugs), and I'm an IKUN. I graduated from Hohai University, Nanjing.
+I'm currently in my third year of graduate studies in Software Engineering at China University of Mining and Technology, supervised by Liu Bing. I did my undergraduate studies at Hohai University (Nanjing) in the School of Computer and Information.
 ---
 Recent trends
 ---
 
-I don't even know...
+...
