@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Vicent's Home"
+title: "Vincent's Home"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
