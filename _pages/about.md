@@ -13,5 +13,7 @@ I'm currently in my third year of graduate studies in Software Engineering at Ch
 ---
 Recent trends
 ---
-
+2026-2-26 One paper is accepted by TOSEM!
+2026-1-12 One paper is accepted by TCSVT!
+2025-6-29 One paper is accepted by TOMM!
 ...
