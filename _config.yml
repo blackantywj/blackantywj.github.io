@@ -83,10 +83,10 @@ author:
   name             : "Vincent Yang"
   avatar           : "profile.png"
   bio              : "An atypical programmer"
-  location         : "Nanjing China"
-  employer         :
+  location         : "Xuzhou China"
+  employer         : 
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : # "http://yourfullgooglescholarurl.com"
+  googlescholar    : "https://scholar.google.com.tw/citations?user=hIQfKsMAAAAJ&hl=zh-CN"
   email            : "wenjiey012@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
@@ -96,14 +96,14 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "blackantywj"
+  github           : "https://github.com/blackantywj"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : # "http://orcid.org/yourorcidurl"
+  orcid            : "https://orcid.org/0009-0009-3905-6128"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
