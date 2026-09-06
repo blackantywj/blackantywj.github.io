@@ -1,14 +1,314 @@
 {% if page.lang == "zh-CN" %}
   {% assign visitor_map_title = "访问统计" %}
+  {% assign visitor_map_subtitle = "按访客国家实时更新" %}
+  {% assign visitor_map_total_label = "总访问" %}
+  {% assign visitor_map_country_label = "当前国家" %}
+  {% assign visitor_map_top_label = "访问国家排行" %}
+  {% assign visitor_map_loading = "正在加载访客位置数据…" %}
+  {% assign visitor_map_error = "实时定位暂时不可用，已显示全球统计。" %}
+  {% assign visitor_map_current = "当前访客：{country}" %}
+  {% assign visitor_map_top_empty = "暂无国家统计。" %}
 {% else %}
   {% assign visitor_map_title = "Live visitor stats" %}
+  {% assign visitor_map_subtitle = "Updated live by visitor country" %}
+  {% assign visitor_map_total_label = "Total views" %}
+  {% assign visitor_map_country_label = "Current country" %}
+  {% assign visitor_map_top_label = "Top countries" %}
+  {% assign visitor_map_loading = "Loading live location data..." %}
+  {% assign visitor_map_error = "Live location lookup is unavailable right now, but the world map is still shown." %}
+  {% assign visitor_map_current = "Current visitor: {country}" %}
+  {% assign visitor_map_top_empty = "No country data yet." %}
 {% endif %}
 
-<div class="page__visitor-map">
-  <div class="page__visitor-map-title">{{ visitor_map_title }}</div>
-  <iframe
-    class="page__visitor-map-frame"
-    src="https://s01.flagcounter.com/more/EQO"
-    title="{{ visitor_map_title }}"
-    referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="page__visitor-map"
+     data-visitor-map
+     data-visitor-map-namespace="blackantywj_visitor_map"
+     data-visitor-map-loading="{{ visitor_map_loading | escape }}"
+     data-visitor-map-error="{{ visitor_map_error | escape }}"
+     data-visitor-map-current="{{ visitor_map_current | escape }}"
+     data-visitor-map-top-empty="{{ visitor_map_top_empty | escape }}">
+  <div class="page__visitor-map-header">
+    <div>
+      <div class="page__visitor-map-title">{{ visitor_map_title }}</div>
+      <div class="page__visitor-map-subtitle">{{ visitor_map_subtitle }}</div>
+    </div>
+    <div class="page__visitor-map-counters">
+      <div class="page__visitor-map-counter">
+        <span class="page__visitor-map-counter-value" data-visitor-map-total>0</span>
+        <span class="page__visitor-map-counter-label">{{ visitor_map_total_label }}</span>
+      </div>
+      <div class="page__visitor-map-counter">
+        <span class="page__visitor-map-counter-value" data-visitor-map-country-total>0</span>
+        <span class="page__visitor-map-counter-label">{{ visitor_map_country_label }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="page__visitor-map-meta" data-visitor-map-meta aria-live="polite">{{ visitor_map_loading }}</div>
+  <svg class="page__visitor-map-svg" viewBox="0 0 960 480" role="img" aria-label="{{ visitor_map_title }}"></svg>
+  <div class="page__visitor-map-topwrap">
+    <div class="page__visitor-map-top-title">{{ visitor_map_top_label }}</div>
+    <ol class="page__visitor-map-top" data-visitor-map-top></ol>
+  </div>
+  <noscript>
+    <div class="page__visitor-map-noscript">{{ visitor_map_error }}</div>
+  </noscript>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+(function () {
+  const root = document.querySelector('[data-visitor-map]');
+  if (!root || !window.d3 || !window.topojson) {
+    return;
+  }
+
+  const svg = root.querySelector('.page__visitor-map-svg');
+  const meta = root.querySelector('[data-visitor-map-meta]');
+  const totalEl = root.querySelector('[data-visitor-map-total]');
+  const countryTotalEl = root.querySelector('[data-visitor-map-country-total]');
+  const topEl = root.querySelector('[data-visitor-map-top]');
+  const namespace = root.dataset.visitorMapNamespace || 'blackantywj_visitor_map';
+  const texts = {
+    loading: root.dataset.visitorMapLoading || 'Loading live location data...',
+    error: root.dataset.visitorMapError || 'Live stats are unavailable right now.',
+    current: root.dataset.visitorMapCurrent || 'Current visitor: {country}',
+    topEmpty: root.dataset.visitorMapTopEmpty || 'No country data yet.'
+  };
+  const numberFormat = new Intl.NumberFormat(document.documentElement.lang || 'en');
+  const worldUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+  const codesUrl = 'https://cdn.jsdelivr.net/npm/i18n-iso-countries@7.14.0/codes.json';
+  const locationUrl = 'https://ipwho.is/?fields=success,country,country_code,ip';
+  const countApiRoot = 'https://countapi.mileshilliard.com/api/v1';
+  const totalKey = `${namespace}_total`;
+
+  const colorStops = [
+    { min: 0, fill: '#eef2f6' },
+    { min: 1, fill: '#dcebf7' },
+    { min: 3, fill: '#b7d6ee' },
+    { min: 8, fill: '#78abd8' },
+    { min: 20, fill: '#285f8f' }
+  ];
+
+  const setMeta = (value, isError) => {
+    meta.textContent = value;
+    meta.classList.toggle('is-error', Boolean(isError));
+  };
+
+  const formatCount = (value) => numberFormat.format(Number(value) || 0);
+
+  const fetchJSON = async (url) => {
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`${url} failed (${response.status})`);
+    }
+    return response.json();
+  };
+
+  const getCount = async (key) => {
+    try {
+      const response = await fetch(`${countApiRoot}/get/${encodeURIComponent(key)}`, { cache: 'no-store' });
+      if (response.status === 404) {
+        return 0;
+      }
+      if (!response.ok) {
+        return 0;
+      }
+      const payload = await response.json();
+      return Number(payload.value) || 0;
+    } catch (error) {
+      return 0;
+    }
+  };
+
+  const hitCount = async (key) => {
+    const response = await fetch(`${countApiRoot}/hit/${encodeURIComponent(key)}`, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`countapi hit failed for ${key}`);
+    }
+    return response.json();
+  };
+
+  const countryKey = (alpha2) => `${namespace}_country_${String(alpha2).toUpperCase()}`;
+
+  const colorForCount = (count) => {
+    for (let index = colorStops.length - 1; index >= 0; index -= 1) {
+      if (count >= colorStops[index].min) {
+        return colorStops[index].fill;
+      }
+    }
+    return colorStops[0].fill;
+  };
+
+  const buildCountryLookup = (rows) => {
+    const numericToAlpha2 = new Map();
+    rows.forEach((row) => {
+      if (!Array.isArray(row) || row.length < 3) {
+        return;
+      }
+      const alpha2 = String(row[0] || '').toUpperCase();
+      const numeric = String(row[2] || '').padStart(3, '0');
+      if (!alpha2 || alpha2 === 'ZZ') {
+        return;
+      }
+      numericToAlpha2.set(numeric, alpha2);
+    });
+    return numericToAlpha2;
+  };
+
+  const drawMap = (features, numericToAlpha2, counts, currentAlpha2) => {
+    svg.innerHTML = '';
+    const width = 960;
+    const height = 480;
+    const world = { type: 'FeatureCollection', features };
+    const projection = d3.geoNaturalEarth1().fitSize([width, height], world);
+    const path = d3.geoPath(projection);
+    const svgNs = 'http://www.w3.org/2000/svg';
+
+    const background = document.createElementNS(svgNs, 'path');
+    background.setAttribute('d', path({ type: 'Sphere' }));
+    background.setAttribute('fill', '#f7f9fb');
+    background.setAttribute('stroke', '#d8e0e8');
+    background.setAttribute('stroke-width', '1');
+    svg.appendChild(background);
+
+    const countriesGroup = document.createElementNS(svgNs, 'g');
+    countriesGroup.setAttribute('class', 'page__visitor-map-countries');
+
+    features.forEach((feature) => {
+      const numeric = String(feature.id || '').padStart(3, '0');
+      const alpha2 = numericToAlpha2.get(numeric) || '';
+      const count = alpha2 ? (counts.get(alpha2) || 0) : 0;
+      const pathEl = document.createElementNS(svgNs, 'path');
+      pathEl.setAttribute('d', path(feature));
+      pathEl.setAttribute('fill', colorForCount(count));
+      pathEl.setAttribute('stroke', alpha2 && alpha2 === currentAlpha2 ? '#1d4ed8' : '#9fb0c0');
+      pathEl.setAttribute('stroke-width', alpha2 && alpha2 === currentAlpha2 ? '1.6' : '0.65');
+      pathEl.setAttribute('vector-effect', 'non-scaling-stroke');
+
+      const title = document.createElementNS(svgNs, 'title');
+      title.textContent = `${feature.properties && feature.properties.name ? feature.properties.name : numeric}: ${formatCount(count)}`;
+      pathEl.appendChild(title);
+      countriesGroup.appendChild(pathEl);
+    });
+
+    svg.appendChild(countriesGroup);
+  };
+
+  const renderTop = (entries) => {
+    topEl.innerHTML = '';
+    const ranked = entries
+      .filter((entry) => entry.count > 0)
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 8);
+
+    if (!ranked.length) {
+      const empty = document.createElement('li');
+      empty.className = 'page__visitor-map-empty';
+      empty.textContent = texts.topEmpty;
+      topEl.appendChild(empty);
+      return;
+    }
+
+    ranked.forEach((entry, index) => {
+      const item = document.createElement('li');
+      item.className = 'page__visitor-map-top-item';
+
+      const name = document.createElement('span');
+      name.className = 'page__visitor-map-country-name';
+      name.textContent = entry.name;
+
+      const count = document.createElement('span');
+      count.className = 'page__visitor-map-country-count';
+      count.textContent = formatCount(entry.count);
+
+      const rank = document.createElement('span');
+      rank.className = 'page__visitor-map-country-rank';
+      rank.textContent = String(index + 1).padStart(2, '0');
+
+      item.appendChild(rank);
+      item.appendChild(name);
+      item.appendChild(count);
+      topEl.appendChild(item);
+    });
+  };
+
+  const run = async () => {
+    setMeta(texts.loading, false);
+    try {
+      const [codes, topology] = await Promise.all([
+        fetchJSON(codesUrl),
+        fetchJSON(worldUrl)
+      ]);
+
+      const numericToAlpha2 = buildCountryLookup(codes);
+      const worldObject = topology.objects && topology.objects.countries;
+      if (!worldObject) {
+        throw new Error('Missing world atlas country data');
+      }
+
+      const features = topojson.feature(topology, worldObject).features;
+      drawMap(features, numericToAlpha2, new Map(), '');
+
+      const countryCounts = new Map();
+      const featureEntries = [];
+      const location = await fetchJSON(locationUrl).catch(() => null);
+      const currentAlpha2 = location && location.success ? String(location.country_code || '').toUpperCase() : '';
+      const currentCountryName = location && location.success ? String(location.country || '').trim() : '';
+
+      if (currentAlpha2) {
+        const [totalResult, currentCountryResult] = await Promise.all([
+          hitCount(totalKey).catch(() => null),
+          hitCount(countryKey(currentAlpha2)).catch(() => null)
+        ]);
+        totalEl.textContent = formatCount(totalResult && totalResult.value);
+        countryTotalEl.textContent = formatCount(currentCountryResult && currentCountryResult.value);
+        setMeta(texts.current.replace('{country}', currentCountryName || currentAlpha2), false);
+      } else {
+        const totalResult = await hitCount(totalKey).catch(() => null);
+        totalEl.textContent = formatCount(totalResult && totalResult.value);
+        countryTotalEl.textContent = '0';
+        setMeta(texts.error, true);
+      }
+
+      const featureCounts = await Promise.all(features.map(async (feature) => {
+        const numeric = String(feature.id || '').padStart(3, '0');
+        const alpha2 = numericToAlpha2.get(numeric) || '';
+        const count = alpha2 ? await getCount(countryKey(alpha2)) : 0;
+        return {
+          feature,
+          alpha2,
+          count
+        };
+      }));
+
+      featureCounts.forEach(({ feature, alpha2, count }) => {
+        countryCounts.set(alpha2, count);
+        featureEntries.push({
+          name: feature.properties && feature.properties.name ? feature.properties.name : alpha2 || String(feature.id || ''),
+          alpha2,
+          count
+        });
+      });
+
+      drawMap(features, numericToAlpha2, countryCounts, currentAlpha2);
+      renderTop(featureEntries);
+    } catch (error) {
+      setMeta(texts.error, true);
+      if (totalEl) {
+        totalEl.textContent = '0';
+      }
+      if (countryTotalEl) {
+        countryTotalEl.textContent = '0';
+      }
+      topEl.innerHTML = '';
+      const item = document.createElement('li');
+      item.className = 'page__visitor-map-empty';
+      item.textContent = texts.topEmpty;
+      topEl.appendChild(item);
+    }
+  };
+
+  run();
+})();
+</script>
