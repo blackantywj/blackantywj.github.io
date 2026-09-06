@@ -11,17 +11,31 @@ redirect_from:
 {% include base_path %}
 
 ## Education
-- Ph.D. in Computer Science and Technology, Nankai University, 2026.09 - present
-  - School of Cyberspace Security
-  - Supervisors: Prof. Ding Dan and Associate Prof. Dai Yimian
-- M.S. in Software Engineering, China University of Mining and Technology, 2023.09 - 2026.06
-  - School of Computer Science and Technology
-  - GPA: 88.92/100, rank 1/12
-  - Supervisors: Prof. Liu Bing and Associate Prof. Liu Peng
-- B.S. in Computer Science and Technology, Hohai University, 2017.09 - 2021.06
-  - School of Computer and Information
-  - GPA: 4.36/5, rank 50/209
-  - Supervisor: Prof. Liu Fan
+<div class="cv-education">
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/nankai-logo.jpg" alt="Nankai University logo">
+    <div class="cv-education__body">
+      <div class="cv-education__title">Ph.D. in Computer Science and Technology, Nankai University, 2026.09 - present</div>
+      <div class="cv-education__meta">School of Cyberspace Security · Supervisors: Prof. Ding Dan and Associate Prof. Dai Yimian</div>
+    </div>
+  </div>
+
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/cumt-logo.png" alt="China University of Mining and Technology logo">
+    <div class="cv-education__body">
+      <div class="cv-education__title">M.S. in Software Engineering, China University of Mining and Technology, 2023.09 - 2026.06</div>
+      <div class="cv-education__meta">School of Computer Science and Technology · GPA: 88.92/100, rank 1/12 · Supervisors: Prof. Liu Bing and Associate Prof. Liu Peng</div>
+    </div>
+  </div>
+
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/hhu-logo.png" alt="Hohai University logo">
+    <div class="cv-education__body">
+      <div class="cv-education__title">B.S. in Computer Science and Technology, Hohai University, 2017.09 - 2021.06</div>
+      <div class="cv-education__meta">School of Computer and Information · GPA: 4.36/5, rank 50/209 · Supervisor: Prof. Liu Fan</div>
+    </div>
+  </div>
+</div>
 
 ## Research Interests
 - Remote sensing object detection

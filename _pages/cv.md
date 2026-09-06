@@ -11,17 +11,31 @@ redirect_from:
 {% include base_path %}
 
 ## 教育背景
-- 南开大学，计算机科学与技术，工学博士，2026.09 - 至今
-  - 密码与网络空间安全学院
-  - 导师：丁丹教授、戴一冕副教授
-- 中国矿业大学，软件工程，工学硕士，2023.09 - 2026.06
-  - 计算机科学与技术学院
-  - 成绩：88.92/100，排名 1/12
-  - 导师：刘兵教授、刘鹏副教授
-- 河海大学，计算机科学与技术，工学学士，2017.09 - 2021.06
-  - 计算机与信息学院
-  - 成绩：4.36/5，排名 50/209
-  - 导师：刘凡教授
+<div class="cv-education">
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/nankai-logo.jpg" alt="南开大学校徽">
+    <div class="cv-education__body">
+      <div class="cv-education__title">南开大学，计算机科学与技术，工学博士，2026.09 - 至今</div>
+      <div class="cv-education__meta">密码与网络空间安全学院 · 导师：丁丹教授、戴一冕副教授</div>
+    </div>
+  </div>
+
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/cumt-logo.png" alt="中国矿业大学校徽">
+    <div class="cv-education__body">
+      <div class="cv-education__title">中国矿业大学，软件工程，工学硕士，2023.09 - 2026.06</div>
+      <div class="cv-education__meta">计算机科学与技术学院 · 成绩：88.92/100，排名 1/12 · 导师：刘兵教授、刘鹏副教授</div>
+    </div>
+  </div>
+
+  <div class="cv-education__item">
+    <img class="cv-education__logo" src="{{ base_path }}/images/school-logos/hhu-logo.png" alt="河海大学校徽">
+    <div class="cv-education__body">
+      <div class="cv-education__title">河海大学，计算机科学与技术，工学学士，2017.09 - 2021.06</div>
+      <div class="cv-education__meta">计算机与信息学院 · 成绩：4.36/5，排名 50/209 · 导师：刘凡教授</div>
+    </div>
+  </div>
+</div>
 
 ## 研究方向
 - 遥感目标检测
