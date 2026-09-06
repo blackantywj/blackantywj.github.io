@@ -90,3 +90,22 @@
     }
   }
 }
+
+.page__footer-visitor-map {
+  margin: 0 0 1rem;
+}
+
+.page__footer-visitor-map-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.page__footer-visitor-map-image {
+  display: block;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+  background: #fff;
+}
