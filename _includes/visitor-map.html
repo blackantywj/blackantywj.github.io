@@ -1,17 +1,15 @@
 {% if page.lang == "zh-CN" %}
-  {% assign visitor_map_title = "访问地图" %}
-  {% assign visitor_map_alt = "访问地图" %}
+  {% assign visitor_map_title = "访问统计" %}
 {% else %}
-  {% assign visitor_map_title = "Visitor map" %}
-  {% assign visitor_map_alt = "Visitor map by country" %}
+  {% assign visitor_map_title = "Live visitor stats" %}
 {% endif %}
 
 <div class="page__visitor-map">
   <div class="page__visitor-map-title">{{ visitor_map_title }}</div>
-  <a class="page__visitor-map-link" href="https://s01.flagcounter.com/more/EQO" target="_blank" rel="noopener">
-    <img
-      class="page__visitor-map-image"
-      src="https://images.weserv.nl/?url=https%3A%2F%2Fs01.flagcounter.com%2Fmap%2FEQO%2Fsize_s%2Ftxt_000000%2Fborder_CCCCCC%2Fpageviews_0%2Fviewers_0%2Fflags_1%2F"
-      alt="{{ visitor_map_alt }}">
-  </a>
+  <iframe
+    class="page__visitor-map-frame"
+    src="https://s01.flagcounter.com/more/EQO"
+    title="{{ visitor_map_title }}"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
