@@ -9,6 +9,8 @@ redirect_from:
   - /en/about.html
 ---
 
+{% include visitor-map.html %}
+
 I am Wenjie Yang, a PhD student in Computer Science and Technology at Nankai University, School of Cyberspace Security. My research interests include remote sensing object detection, out-of-distribution generalization, and 3D scene understanding. I previously earned an M.S. in Software Engineering from China University of Mining and Technology, where I ranked 1/12 and received the Outstanding Graduate and Outstanding Master's Thesis awards, and a B.S. in Computer Science and Technology from Hohai University, where I ranked 50/209.
 
 ## Quick Facts
@@ -61,3 +63,5 @@ I am Wenjie Yang, a PhD student in Computer Science and Technology at Nankai Uni
 - Pavement crack detection using attention u-net with multiple sources
 
 See the full list on the [Publications](/en/publications/) page.
+
+

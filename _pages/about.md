@@ -9,6 +9,8 @@ redirect_from:
   - /about.html
 ---
 
+{% include visitor-map.html %}
+
 我是杨文杰，目前在南开大学密码与网络空间安全学院攻读计算机科学与技术工学博士，研究方向包括遥感目标检测、分布外泛化和三维场景理解。此前我在中国矿业大学完成软件工程硕士，排名 1/12，并获得中国矿业大学优秀毕业生和优秀硕士毕业论文；本科毕业于河海大学计算机科学与技术专业，排名 50/209。
 
 ## 个人概览
@@ -61,3 +63,5 @@ redirect_from:
 - Pavement crack detection using attention u-net with multiple sources
 
 完整论文列表见 [论文页](/publications/)。
+
+
