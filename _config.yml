@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Wenjie Yang / Vincent's Home"
+title                    : "杨文杰 / Wenjie Yang"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
+name                     : &name "杨文杰"
+description              : &description "杨文杰的个人学术主页，记录研究、论文和项目。"
 url                      : https://blackantywj.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "blackantywj/blackantywj.github.io"
@@ -80,10 +80,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Vincent Yang"
+  name             : "杨文杰"
   avatar           : "profile.png"
-  bio              : "An atypical programmer"
-  location         : "Xuzhou China"
+  bio              : "南开大学博士研究生，研究方向为遥感目标检测、分布外泛化与三维场景理解"
+  location         : "天津津南"
   employer         : 
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com.tw/citations?user=hIQfKsMAAAAJ&hl=zh-CN"

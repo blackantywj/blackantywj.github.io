@@ -1,145 +1,55 @@
 ---
 permalink: /
-title: "Vincent's Home"
+title: "杨文杰 / Wenjie Yang"
 excerpt: "About me"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
-I'm currently in my third year of graduate studies in Software Engineering at China University of Mining and Technology, supervised by Liu Bing. I did my undergraduate studies at Hohai University (Nanjing) in the School of Computer and Information.
+我是杨文杰，目前在南开大学密码与网络空间安全学院攻读计算机科学与技术工学博士。我的研究方向包括遥感目标检测、分布外泛化和三维场景理解。此前我在中国矿业大学完成软件工程硕士，在河海大学完成计算机科学与技术学士。
 
----
-Recent trends
----
-> 
-> 2026-2-26 One paper is accepted by TOSEM!
->
-> 2026-1-12 One paper is accepted by TCSVT!
->
-> 2025-6-29 One paper is accepted by TOMM!
->
-> 2021-5-21 One paper is accepted by TNNLS!
-> 
+## 教育背景
+- 南开大学，计算机科学与技术，工学博士，2026.09 - 至今
+  - 密码与网络空间安全学院
+  - 指导老师：丁丹教授、戴一冕副教授
+- 中国矿业大学，软件工程，工学硕士，2023.09 - 2026.06
+  - 计算机科学与技术学院
+  - 成绩：88.92/100，排名 1/12
+  - 指导老师：刘兵教授、刘鹏副教授
+- 河海大学，计算机科学与技术，工学学士，2017.09 - 2021.06
+  - 计算机与信息学院
+  - 成绩：4.36/5，排名 50/209
+  - 指导老师：刘凡教授
 
----
-Selected Papers
----
+## 近期进展
+- 2026-02-26：*Evolving Trends in Cleanliness of Open Source Projects* 已被 ACM TOSEM 接收。
+- 2026-01-12：*Retrieval-augmented Pseudo-image Guided Alignment and Text Domain-aware Memory Recall for Continual Zero-shot Captioning* 已被 IEEE TCSVT 接收。
+- 2025-06-29：*Syntactic-Conditional Diffusion Networks for Controllable Image Captioning* 已被 ACM TOMM 接收。
+- 2021-05-21：*A survey of convolutional neural networks: analysis, applications, and prospects* 已发表在 IEEE TNNLS。
 
-<!-- 论文列表样式 -->
-<style>
-/* 论文列表容器：控制整体宽度、间距 */
-.papers-list {
-  max-width: 950px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; /* 论文条目之间的间距 */
-}
+## 项目经历
+- 矿山安全风险可视化管控系统，2025.10 - 2025.12
+  - 技术栈：Ruoyi 前后端分离框架、可视化大屏设计软件、MySQL 数据库
+  - 职责：实时数据前端展示、可视化大屏开发、基于 DeepSeek 的问答系统开发
+  - 亮点：使用山海鲸开发平台进行数据大屏开发，并接入实时数据；结合数据库和 Prompt 设计完成灾源分析
 
-/* 单条论文条目：左图右文核心布局 */
-.paper-item {
-  display: flex;
-  align-items: center;
-  gap: 2rem; /* 图和文字的间距 */
-  padding: 1rem 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  flex-wrap: wrap; /* 移动端自动换行 */
-}
+## 荣誉奖励
+- 中国矿业大学优秀毕业生
+- 中国矿业大学优秀硕士毕业论文
 
-/* 左侧缩略图列：固定宽度，不拉伸 */
-.paper-thumbnail {
-  flex: 0 0 180px; /* 缩略图宽度，可调整 */
-  min-width: 150px; /* 移动端最小宽度 */
-  height: 160px; /* 缩略图高度，统一尺寸 */
-}
+## 科研技能
+- Python / C++ / JavaScript
+- PyTorch
+- Linux 系统及 Shell 脚本
+- CET-6 536
 
-.paper-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 保持图片比例，裁剪多余部分 */
-  border-radius: 6px;
-  border: 1px solid #eee;
-}
+## 代表论文
+- Evolving Trends in Cleanliness of Open Source Projects
+- Retrieval-augmented Pseudo-image Guided Alignment and Text Domain-aware Memory Recall for Continual Zero-shot Captioning
+- Syntactic-Conditional Diffusion Networks for Controllable Image Captioning
+- A survey of convolutional neural networks: analysis, applications, and prospects
+- Pavement crack detection using attention u-net with multiple sources
 
-/* 右侧论文信息列：占满剩余宽度 */
-.paper-info {
-  flex: 1;
-  min-width: 280px; /* 移动端最小宽度 */
-}
-
-/* 论文信息文字样式 */
-.paper-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0 0 0.6rem 0;
-}
-
-.paper-meta {
-  color: #555;
-  line-height: 1.7;
-  font-size: 0.95rem;
-  margin: 0.4rem 0;
-}
-
-.paper-meta strong {
-  color: #2c3e50;
-}
-</style>
-
-<!-- 论文列表容器 -->
-<div class="papers-list">
-  <!-- 论文1条目 -->
-  <div class="paper-item">
-    <!-- 左侧缩略图 -->
-    <div class="paper-thumbnail">
-      <img src="/images/papers/framework.png" alt="论文1缩略图">
-    </div>
-    <!-- 右侧信息 -->
-    <div class="paper-info">
-      <h4 class="paper-title">Evolving Trends in Cleanliness of Open Source Projects</h4>
-      <p class="paper-meta">作者：Dapeng Yan, <strong>Wenjie Yang,</strong> et al.</p>
-      <p class="paper-meta"><strong>发表期刊/会议：ACM TOSEM</strong>（CCF A类）</p>
-    </div>
-  </div>
-
-  <!-- 论文2条目（复制即可新增） -->
-  <div class="paper-item">
-    <div class="paper-thumbnail">
-      <img src="/images/papers/fig3.png" alt="论文2缩略图">
-    </div>
-    <div class="paper-info">
-      <h4 class="paper-title">Retrieval-augmented Pseudo-image Guided Alignment and Text Domain-aware Memory Recall for Continual Zero-shot Captioning</h4>
-      <p class="paper-meta">作者：Bing Liu; <strong>Wenjie Yang</strong>, et al.</p>
-      <p class="paper-meta"><strong>发表期刊/会议：IEEE TCSVT</strong>（CCF B类）</p>
-    </div>
-  </div>
-
-  <!-- 新增论文：直接复制上面的paper-item模块，替换内容即可 -->
-  <div class="paper-item">
-    <div class="paper-thumbnail">
-      <img src="/images/papers/framework_p.png" alt="论文3缩略图">
-    </div>
-    <div class="paper-info">
-      <h4 class="paper-title">Syntactic-Conditional Diffusion Networks for Controllable Image Captioning</h4>
-      <p class="paper-meta">作者：Bing Liu; <strong>Wenjie Yang,</strong> et al.</p>
-      <p class="paper-meta"><strong>发表期刊/会议：ACM TOMM</strong>（CCF B类）</p>
-    </div>
-  </div>
-  <!-- 新增论文：直接复制上面的paper-item模块，替换内容即可 -->
-  <div class="paper-item">
-    <div class="paper-thumbnail">
-      <img src="/images/papers/cnn.png" alt="论文3缩略图">
-    </div>
-    <div class="paper-info">
-      <h4 class="paper-title">A Survey of Convolutional Neural Networks:
-Analysis, Applications, and Prospects</h4>
-      <p class="paper-meta">作者：Zewen Li , Fan Liu, <strong>Wenjie Yang,</strong> et al. </p>
-      <p class="paper-meta"><strong>发表期刊/会议：IEEE TNNLS</strong>（CCF B类）</p>
-    </div>
-  </div>
-</div>
+完整论文列表见 [Publications](/publications/)。
