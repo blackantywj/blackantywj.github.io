@@ -1,14 +1,22 @@
 ---
 permalink: /
 title: "杨文杰 / Wenjie Yang"
-excerpt: "About me"
+excerpt: "关于我"
+lang: zh-CN
 author_profile: true
 redirect_from:
   - /about/
   - /about.html
 ---
 
-我是杨文杰，目前在南开大学密码与网络空间安全学院攻读计算机科学与技术工学博士。我的研究方向包括遥感目标检测、分布外泛化和三维场景理解。此前我在中国矿业大学完成软件工程硕士，期间取得 1/12 的专业排名，并获得中国矿业大学优秀毕业生和优秀硕士毕业论文；本科毕业于河海大学计算机科学与技术专业，成绩 4.36/5，排名 50/209。
+我是杨文杰，目前在南开大学密码与网络空间安全学院攻读计算机科学与技术工学博士，研究方向包括遥感目标检测、分布外泛化和三维场景理解。此前我在中国矿业大学完成软件工程硕士，排名 1/12，并获得中国矿业大学优秀毕业生和优秀硕士毕业论文；本科毕业于河海大学计算机科学与技术专业，排名 50/209。
+
+## 个人概览
+- 博士：南开大学，计算机科学与技术，2026.09 - 至今
+- 硕士：中国矿业大学，软件工程，2023.09 - 2026.06
+- 学士：河海大学，计算机科学与技术，2017.09 - 2021.06
+- 荣誉：中国矿业大学优秀毕业生、中国矿业大学优秀硕士毕业论文
+- 技能：Python / C++ / JavaScript，PyTorch，Linux 与 Shell
 
 ## 教育背景
 - 南开大学，计算机科学与技术，工学博士，2026.09 - 至今
@@ -52,4 +60,4 @@ redirect_from:
 - A survey of convolutional neural networks: analysis, applications, and prospects
 - Pavement crack detection using attention u-net with multiple sources
 
-完整论文列表见 [Publications](/publications/)。
+完整论文列表见 [论文页](/publications/)。

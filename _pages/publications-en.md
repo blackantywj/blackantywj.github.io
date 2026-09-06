@@ -1,8 +1,8 @@
 ---
 layout: archive
-title: "论文"
-permalink: /publications/
-lang: zh-CN
+title: "Publications"
+permalink: /en/publications/
+lang: en-US
 author_profile: true
 ---
 

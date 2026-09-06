@@ -48,6 +48,15 @@ en-GB:
 en-AU:
   <<: *DEFAULT_EN
 
+# Chinese
+# -----------------
+zh-CN: &DEFAULT_ZH
+  follow_label               : "关注："
+  website_label              : "网站"
+  email_label                : "邮箱"
+zh:
+  <<: *DEFAULT_ZH
+
 # Spanish
 # --------------
 es: &DEFAULT_ES
